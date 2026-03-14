@@ -2,16 +2,15 @@ const oldeventsData = [
   {
     id: 4,
     name: "Talk with Anubha Maneshwar",
-    desc: "We hosted Anubha Maneshwar (founding director of GirlScript) live on our Instagram handle! Viewers learnt about GirlScript Foundation; the inception, journey, her motivation, roadblocks and where Anubha wants to take it in the future. She also shared her opinions on the ‘women in tech’ movement, entrepreneurship and our education system. The ‘Question and Answer’ session saw questions on technology, entrepreneurship, profile building, resume writing, community building, professional communication and leadership to which Anubha gave her take on and provided insightful answers.",
-    photo: "../images/anubha.jpeg"  //change Image 
+    desc: "We hosted Anubha Maneshwar (founding director of GirlScript) live on our Instagram handle! Viewers learnt about GirlScript Foundation; the inception, journey, her motivation, roadblocks and where Anubha wants to take it in the future. She also shared her opinions on the 'women in tech' movement, entrepreneurship and our education system. The 'Question and Answer' session saw questions on technology, entrepreneurship, profile building, resume writing, community building, professional communication and leadership to which Anubha gave her take on and provided insightful answers.",
+    photo: "../images/anubha.jpeg"
   },
   {
     id: 3,
     name: "RecHERsion 2020",
-    desc: "Hello there, women of technology!There is no gate, no lock, no bolt. Here's an opportunity for you to follow in the footsteps of greats such as Margaret Hamilton and Grace Mary Hopper.ACM-W, NITK in collaboration with ACM-W, VIT sponsored by Coding Blocks present to you an opportunity to code, compete and show us what you got at an all girls coding contest, RecHERsion.",
+    desc: "Hello there, women of technology! There is no gate, no lock, no bolt. Here's an opportunity for you to follow in the footsteps of greats such as Margaret Hamilton and Grace Mary Hopper. ACM-W, NITK in collaboration with ACM-W, VIT sponsored by Coding Blocks present to you an opportunity to code, compete and show us what you got at an all girls coding contest, RecHERsion.",
     photo: "../images/rechersion.jpg"
   },
-
   {
     id: 2,
     name: "Women Emerging in Finance 2019",
@@ -21,53 +20,52 @@ const oldeventsData = [
   {
     id: 1,
     name: "Open Source Kick Start",
-    desc: " With Hactoberfest 2020 going on in full swing, we at ACM-W invite all open source enthusiasts to contribute to our organisation and watch your work being deployed! 🚀Come and get a feel of how most GSoC organisations work and familiarise yourself with Open Source projects.",
+    desc: "With Hactoberfest 2020 going on in full swing, we at ACM-W invite all open source enthusiasts to contribute to our organisation and watch your work being deployed! Come and get a feel of how most GSoC organisations work and familiarise yourself with Open Source projects.",
     photo: "../images/open.jpg"
   },
 ];
 
-const neweventsData = [
+const neweventsData = [];
 
-];
-
-
-function EventTemplate(events) {
+function EventTemplate(event) {
   return `
-  <div class="card col-md-4 col-sm-12> 
-  <div class="card">
-  <div style="text-align:center">
-  <img src="${events.photo}" alt="Card image cap" class="img-fluid">
-  <div class="card-body">
-    <h5 class="card-title" style="text-align:center";><strong>${events.name}</strong></h5>
-    <p class="card-text">${events.desc}</p>
-  </div>
-  </div>
-  </div>
+    <div class="card col-md-4 col-sm-12">
+      <div class="card">
+        <div style="text-align:center">
+          <img src="${event.photo}" alt="${event.name}" class="img-fluid">
+          <div class="card-body">
+            <h5 class="card-title" style="text-align:center"><strong>${event.name}</strong></h5>
+            <p class="card-text">${event.desc}</p>
+          </div>
+        </div>
+      </div>
+    </div>
   `;
-
 }
-document.getElementById("oldevents").click();
+
+function setActiveTab(activeId, inactiveId) {
+  document.getElementById(activeId).style.borderBottom = "5px solid #f15a42";
+  document.getElementById(inactiveId).style.borderBottom = "5px solid #ffffff";
+}
+
+function showEvents(data, activeId, inactiveId) {
+  document.getElementById("app").innerHTML = `
+    <br>
+    <div class="container">
+      <div class="row">
+        ${data.map(EventTemplate).join("")}
+      </div>
+    </div>
+  `;
+  setActiveTab(activeId, inactiveId);
+}
+
 function oldevents() {
-  i = 0;
-  console.log("hi");
-  document.getElementById("app").innerHTML = `<br>
-<div class= "container">
-<div class = "row">
-  ${oldeventsData.map(EventTemplate).join("")} </div>
-`;
-  document.getElementById("newevents").style.borderBottom = "5px solid #ffffff";
-  document.getElementById("oldevents").style.borderBottom = "5px solid #f15a42";
+  showEvents(oldeventsData, "oldevents", "newevents");
 }
 
 function newevents() {
-  i = 0;
-  console.log("hi");
-  document.getElementById("app").innerHTML = ` <br>
-<div class= "container">
-<div class="row">
-
-  ${neweventsData.map(EventTemplate).join("")} </div></div></div></div></div>
-`;
-  document.getElementById("oldevents").style.borderBottom = "5px solid #ffffff";
-  document.getElementById("newevents").style.borderBottom = "5px solid #f15a42";
+  showEvents(neweventsData, "newevents", "oldevents");
 }
+
+document.getElementById("oldevents").click();

@@ -1,91 +1,60 @@
-const members1 = [
-  {
-    id: 1,
-    name: "Supritha Harishankar",
-    desc: "Chairperson",
-    photo: "../images/Supritha.png",
-    facebook: "https://www.facebook.com/acmwnitk/",
-    linkedin: "https://www.linkedin.com/in/suprithahs/"
-  },
-  {
-    id: 2,
-    name: "Subham Chakraborty",
-    desc: "Vice-Chair",
-    photo: "../images/subham.jpg",
-    facebook: "https://www.facebook.com/acmwnitk/",
-    linkedin: "https://www.linkedin.com/in/subham-chakraborty-653226196/",
-  },
-  {
-    id: 3,
-    name: "Vageesha Mishra",
-    desc: "Content Head",
-    photo: "../images/Vageesha.png",
-    linkedin: "https://www.linkedin.com/in/vageesha-mishra-8288a419a",
-    facebook: "https://www.facebook.com/vageesha.mishraa"
-  }
-]
-const members2 = [
-  {
-    id: 4,
-    name: "Meghna Kashyap",
-    desc: "Publicity Coordinator",
-    photo: "../images/Meghna.jpg",
-    linkedin: "https://www.linkedin.com/in/meghna-kashyap-4a6860196/",
-    facebook: "https://www.facebook.com/meghna.kashyap.98/"
-  },
-
-  {
-    id: 5,
-    name: "Yash Kumar Gupta",
-    desc: "Website Head",
-    photo: "../images/yash.jpg",
-    linkedin: "https://www.linkedin.com/in/yash-kumar-gupta-41a931143",
-    facebook: "https://www.facebook.com/yash.gupta.353803"
-  }
-];
-
-
-
-function EventTemplate1(events) {
+function MemberCard(member) {
   return `
-    <div  class="card col-md-4 col-sm-12> 
-    <div class="card" align="center">
-    <div class="image-box">
-    <img src="${events.photo}" class="rounded-circle" alt="Vice Chair">
+    <div class="team-card">
+      <img src="${member.photo}" alt="${member.name}">
+      <div class="team-card-overlay">
+        <div class="team-card-name">${member.name}</div>
+        <div class="team-card-role">${member.role}</div>
+        <div class="team-card-socials">
+          <a href="${member.linkedin}" target="_blank" rel="noopener" title="${member.name} LinkedIn">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+          <a href="${member.instagram}" target="_blank" rel="noopener" title="${member.name} Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+        </div>
+      </div>
     </div>
-    <div class="card-body">
-      <h3 class="name">${events.name}</h3>
-      <h5 class="role">${events.desc}</h5>
-      <a href=${events.facebook} class="fa fa-facebook"></a>
-      <a href=${events.linkedin} class="fa fa-linkedin"></a>
-    </div>
-    </div>
-    `;
-
-}
-function EventTemplate2(events) {
-  return `
-    <div align="center" class="card col-md-6 col-sm-12> 
-    <div class="card" align="center">
-    <div class="image-box1">
-    <img src="${events.photo}" class="rounded-circle" alt="Vice Chair">
-    </div>
-    <div class="card-body">
-      <h3 class="name">${events.name}</h3>
-      <h5 class="role">${events.desc}</h5>
-      <a href=${events.facebook} class="fa fa-facebook"></a>
-      <a href=${events.linkedin} class="fa fa-linkedin"></a>
-    </div>
-    </div>
-    `;
-
-}
-
-document.getElementById("app").innerHTML = ` <br>
-  <div class= "container">
-  <div class="row">
-    ${members1.map(EventTemplate1).join("")}
-    ${members2.map(EventTemplate2).join("")}
-     </div></div></div></div></div>
   `;
+}
 
+function applyTilt(card, clientX, clientY) {
+  const rect = card.getBoundingClientRect();
+  const cx = rect.left + rect.width / 2;
+  const cy = rect.top + rect.height / 2;
+  const dx = (clientX - cx) / (rect.width / 2);
+  const dy = (clientY - cy) / (rect.height / 2);
+  const tiltX = -dy * 14;
+  const tiltY = dx * 14;
+  card.style.transform = `perspective(600px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.05)`;
+  card.style.boxShadow = `${-tiltY * 1.5}px ${tiltX * 1.5}px 32px rgba(0,0,0,0.28)`;
+}
+
+function resetTilt(card) {
+  card.style.transform = '';
+  card.style.boxShadow = '';
+}
+
+function initCardInteractivity() {
+  document.querySelectorAll('.team-card').forEach(card => {
+    // Mouse tilt
+    card.addEventListener('mousemove', e => applyTilt(card, e.clientX, e.clientY));
+    card.addEventListener('mouseleave', () => resetTilt(card));
+
+    // Touch tilt
+    card.addEventListener('touchmove', e => {
+      e.preventDefault();
+      const touch = e.touches[0];
+      applyTilt(card, touch.clientX, touch.clientY);
+    }, { passive: false });
+    card.addEventListener('touchend', () => resetTilt(card));
+    card.addEventListener('touchcancel', () => resetTilt(card));
+  });
+}
+
+fetch("members.json")
+  .then(res => res.json())
+  .then(members => {
+    document.getElementById("app").innerHTML = members.map(MemberCard).join("");
+    initCardInteractivity();
+  });

@@ -1,79 +1,60 @@
-const members = [
-    { 
-      id:1,
-      name: "M K Apoorva",
-      desc: "Chair",
-      photo: "images/apoorva.jpg",
-      facebook:"https://www.facebook.com/profile.php?id=100018343548473",
-      linkedin:"https://www.linkedin.com/in/apoorva-m-k-b23406169/"
-    },
-    {
-      id:2,
-      name: "Archita Sajjan",
-      desc: "Vice-Chair",
-      photo: "images/archita.jpeg",
-      facebook:"https://en-gb.facebook.com/people/Archita-Sajjan/100019373504599",
-      linkedin:"https://www.linkedin.com/in/archita-sajjan-a44410160/",
-    },
-    {
-      id:3,
-      name: "Subham Chakraborty",
-      desc: "Mentorship Coordinator",
-      photo: "images/subham.jpg",
-      linkedin:"https://www.linkedin.com/in/subham-chakraborty-653226196/",
-      facebook:"https://www.facebook.com/acmwnitk/"
-    },
-    {
-      id:4,
-      name: "Nivedhya Girish",
-      desc: "Social Media Coordinator",
-      photo: "images/nivedhya.jpg",
-      linkedin:"https://www.linkedin.com/in/nivedhya-girish-8919b4198",
-      facebook:"https://www.facebook.com/acmwnitk/"
-    },
-    {
-      id:5,
-      name: "Saahithya Seenivasan",
-      desc: "Social Media Coordinator",
-      photo: "images/saahitya.jpg",
-      linkedin:"https://www.linkedin.com/company/acm-w-nitk/",
-      facebook:"https://www.facebook.com/acmwnitk/"
-  
-    },
-    {
-      id:6,
-      name: "Yash Kumar Gupta",
-      desc: "Website Coordinator",
-      photo: "images/yash.jpg",
-      linkedin:"https://www.linkedin.com/in/yash-kumar-gupta-41a931143",
-      facebook:"https://www.facebook.com/yash.gupta.353803"
-    }
-  ];
-  
-  
-  
-  function EventTemplate(events) {
-    return `
-    <div class="card col-md-4 col-sm-12> 
-    <div class="card" align="center">
-    <div class="image-box">
-    <img src="${events.photo}" class="rounded-circle" alt="Vice Chair">
+function MemberCard(member) {
+  return `
+    <div class="team-card">
+      <img src="${member.photo}" alt="${member.name}">
+      <div class="team-card-overlay">
+        <div class="team-card-name">${member.name}</div>
+        <div class="team-card-role">${member.role}</div>
+        <div class="team-card-socials">
+          <a href="${member.linkedin}" target="_blank" rel="noopener" title="${member.name} LinkedIn">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+          <a href="${member.instagram}" target="_blank" rel="noopener" title="${member.name} Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+        </div>
+      </div>
     </div>
-    <div class="card-body">
-      <h3 class="name">${events.name}</h3>
-      <h5 class="role">${events.desc}</h5>
-      <a href=${events.facebook} class="fa fa-facebook"></a>
-      <a href=${events.linkedin} class="fa fa-linkedin"></a>
-    </div>
-    </div>
-    `;
-    
-    }
-  
-  document.getElementById("app").innerHTML = ` <br>
-  <div class= "container">
-  <div class="row">
-    ${members.map(EventTemplate).join("")} </div></div></div></div></div>
   `;
-  
-  
+}
+
+function applyTilt(card, clientX, clientY) {
+  const rect = card.getBoundingClientRect();
+  const cx = rect.left + rect.width / 2;
+  const cy = rect.top + rect.height / 2;
+  const dx = (clientX - cx) / (rect.width / 2);
+  const dy = (clientY - cy) / (rect.height / 2);
+  const tiltX = -dy * 14;
+  const tiltY = dx * 14;
+  card.style.transform = `perspective(600px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.05)`;
+  card.style.boxShadow = `${-tiltY * 1.5}px ${tiltX * 1.5}px 32px rgba(0,0,0,0.28)`;
+}
+
+function resetTilt(card) {
+  card.style.transform = '';
+  card.style.boxShadow = '';
+}
+
+function initCardInteractivity() {
+  document.querySelectorAll('.team-card').forEach(card => {
+    // Mouse tilt
+    card.addEventListener('mousemove', e => applyTilt(card, e.clientX, e.clientY));
+    card.addEventListener('mouseleave', () => resetTilt(card));
+
+    // Touch tilt
+    card.addEventListener('touchmove', e => {
+      e.preventDefault();
+      const touch = e.touches[0];
+      applyTilt(card, touch.clientX, touch.clientY);
+    }, { passive: false });
+    card.addEventListener('touchend', () => resetTilt(card));
+    card.addEventListener('touchcancel', () => resetTilt(card));
+  });
+}
+
+fetch("members.json")
+  .then(res => res.json())
+  .then(members => {
+    document.getElementById("app").innerHTML = members.map(MemberCard).join("");
+    initCardInteractivity();
+  });

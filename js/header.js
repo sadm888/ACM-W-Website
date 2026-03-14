@@ -1,17 +1,22 @@
-$(window).scroll(function () {
-    var scroll = $(window).scrollTop();
-    if (scroll > 0) {
-        $("#header").addClass("active");
-    } else {
-        $("#header").removeClass("active");
-    }
+// Mobile nav toggle
+document.getElementById("navToggle").addEventListener("click", function () {
+  document.getElementById("navMenu").classList.toggle("open");
 });
 
-$("button.hamburger").click(function(){
-    if($("button.hamburger").text() == "🞬"){
-        $("button.hamburger").text("☰");
-    }else{
-        $("button.hamburger").text("🞬");
+// Highlight active nav link on scroll
+var sections = ["about", "activities", "team", "faq", "contact"];
+window.addEventListener("scroll", function () {
+  var scrollY = window.scrollY + 80;
+  sections.forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) {
+      var link = document.querySelector('.nav-menu .nav-link[href="#' + id + '"]');
+      if (link) {
+        if (scrollY >= el.offsetTop && scrollY < el.offsetTop + el.offsetHeight) {
+          document.querySelectorAll(".nav-menu .nav-link").forEach(function (l) { l.classList.remove("active"); });
+          link.classList.add("active");
+        }
+      }
     }
-    $(".nav-options li").toggle("slow");
+  });
 });

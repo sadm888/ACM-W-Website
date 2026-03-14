@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ACM-W Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Raleway', sans-serif;
+      background: #f4f6f9;
+      color: #333;
+    }
+
+    /* ── HEADER ── */
+    .admin-header {
+      background: #2B2B2B;
+      padding: 0 32px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .admin-header h1 {
+      color: #4AAEE4;
+      font-size: 18px;
+      margin: 0;
+      letter-spacing: 1px;
+    }
+    .admin-header span {
+      color: #888;
+      font-size: 13px;
+    }
+    .btn-back {
+      color: #aaa;
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+    .btn-back:hover { color: #fff; }
+
+    /* ── LAYOUT ── */
+    .admin-body {
+      max-width: 1100px;
+      margin: 36px auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 32px;
+      align-items: start;
+    }
+
+    /* ── SECTION TITLES ── */
+    .section-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #2B2B2B;
+      margin: 0 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #4AAEE4;
+    }
+
+    /* ── MEMBER CARDS ── */
+    .members-panel { background: #fff; border-radius: 10px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+
+    .member-list { display: flex; flex-direction: column; gap: 12px; }
+
+    .member-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: #f9f9f9;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 12px 16px;
+      transition: border-color 0.2s;
+    }
+    .member-row.editing { border-color: #4AAEE4; background: #eef7fd; }
+
+    .member-row img {
+      width: 52px;
+      height: 52px;
+      border-radius: 8px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #ddd;
+    }
+
+    .member-info { flex: 1; min-width: 0; }
+    .member-info .m-name { font-weight: 700; font-size: 15px; }
+    .member-info .m-role { font-size: 12px; color: #888; margin-top: 2px; }
+
+    .member-actions { display: flex; gap: 8px; flex-shrink: 0; }
+
+    .btn-icon {
+      width: 32px; height: 32px;
+      border: none; border-radius: 6px;
+      cursor: pointer; font-size: 13px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .btn-edit   { background: #e8f4fd; color: #4AAEE4; }
+    .btn-edit:hover { background: #4AAEE4; color: #fff; }
+    .btn-delete { background: #fdeaea; color: #e05252; }
+    .btn-delete:hover { background: #e05252; color: #fff; }
+
+    .drag-handle {
+      cursor: grab;
+      color: #ccc;
+      font-size: 16px;
+      padding: 0 4px;
+    }
+    .drag-handle:active { cursor: grabbing; }
+    .member-row.dragging { opacity: 0.4; }
+    .member-row.drag-over { border-color: #4AAEE4; border-style: dashed; }
+
+    /* ── FORM ── */
+    .form-panel { background: #fff; border-radius: 10px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); position: sticky; top: 24px; }
+
+    .form-title { font-size: 16px; font-weight: 700; color: #2B2B2B; margin: 0 0 16px; padding-bottom: 8px; border-bottom: 2px solid #4AAEE4; }
+
+    .form-group { margin-bottom: 14px; }
+    .form-group label { display: block; font-size: 12px; font-weight: 700; color: #555; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    .form-group input[type="text"],
+    .form-group input[type="url"] {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: 'Raleway', sans-serif;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-group input:focus { border-color: #4AAEE4; }
+
+    /* Photo input */
+    .photo-input-row { display: flex; gap: 10px; align-items: center; }
+    .photo-input-row input[type="text"] { flex: 1; }
+    .photo-preview {
+      width: 48px; height: 48px;
+      border-radius: 6px;
+      object-fit: cover;
+      border: 1px solid #ddd;
+      background: #f0f0f0;
+      flex-shrink: 0;
+    }
+
+    .form-actions { display: flex; gap: 10px; margin-top: 20px; }
+
+    .btn-save {
+      flex: 1;
+      background: #4AAEE4;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 11px;
+      font-size: 14px;
+      font-weight: 700;
+      font-family: 'Raleway', sans-serif;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-save:hover { background: #2e97d4; }
+
+    .btn-cancel {
+      background: #f0f0f0;
+      color: #555;
+      border: none;
+      border-radius: 6px;
+      padding: 11px 16px;
+      font-size: 14px;
+      font-family: 'Raleway', sans-serif;
+      cursor: pointer;
+      transition: background 0.2s;
+      display: none;
+    }
+    .btn-cancel:hover { background: #ddd; }
+    .btn-cancel.visible { display: block; }
+
+    /* ── EXPORT ── */
+    .export-panel {
+      grid-column: 1 / -1;
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .export-info { font-size: 14px; color: #555; }
+    .export-info strong { color: #333; }
+
+    .btn-download {
+      background: #2B2B2B;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 11px 24px;
+      font-size: 14px;
+      font-weight: 700;
+      font-family: 'Raleway', sans-serif;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+    .btn-download:hover { background: #4AAEE4; }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #2B2B2B;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast.success { border-left: 4px solid #4AAEE4; }
+    .toast.error   { border-left: 4px solid #e05252; }
+
+    /* ── EMPTY STATE ── */
+    .empty-state { text-align: center; padding: 40px 0; color: #aaa; font-size: 14px; }
+    .empty-state i { font-size: 32px; margin-bottom: 10px; display: block; }
+  </style>
+</head>
+<body>
+
+  <div class="admin-header">
+    <h1>&#9881; ACM-W &mdash; Members Admin</h1>
+    <a href="index.html" class="btn-back"><i class="fa fa-arrow-left"></i> &nbsp;Back to site</a>
+    <span id="localBadge"></span>
+  </div>
+
+  <div class="admin-body">
+
+    <!-- Export bar -->
+    <div class="export-panel">
+      <div class="export-info">
+        <strong id="memberCount">0</strong> members loaded &mdash;
+        edit below, then download and replace <code>members.json</code> in the project folder.
+      </div>
+      <button class="btn-download" onclick="downloadJSON()">
+        <i class="fa fa-download"></i> Download members.json
+      </button>
+    </div>
+
+    <!-- Members list -->
+    <div class="members-panel">
+      <div class="section-title">Current Members <span style="font-weight:400;color:#aaa;font-size:13px;">— drag to reorder</span></div>
+      <div class="member-list" id="memberList"></div>
+    </div>
+
+    <!-- Form -->
+    <div class="form-panel">
+      <div class="form-title" id="formTitle">Add New Member</div>
+      <input type="hidden" id="editIndex" value="-1">
+
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="fName" placeholder="e.g. Priya Sharma">
+      </div>
+      <div class="form-group">
+        <label>Role</label>
+        <input type="text" id="fRole" placeholder="e.g. Chairperson">
+      </div>
+      <div class="form-group">
+        <label>Photo filename <span style="font-weight:400;color:#aaa;">(place file in images/)</span></label>
+        <div class="photo-input-row">
+          <input type="text" id="fPhoto" placeholder="images/name.jpg" oninput="previewPhoto(this.value)">
+          <img class="photo-preview" id="photoPreview" src="" alt="">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>LinkedIn URL</label>
+        <input type="url" id="fLinkedin" placeholder="https://linkedin.com/in/...">
+      </div>
+      <div class="form-group">
+        <label>Instagram URL</label>
+        <input type="url" id="fInstagram" placeholder="https://instagram.com/...">
+      </div>
+
+      <div class="form-actions">
+        <button class="btn-save" onclick="saveMember()">
+          <i class="fa fa-check"></i> &nbsp;<span id="saveLabel">Add Member</span>
+        </button>
+        <button class="btn-cancel" id="cancelBtn" onclick="cancelEdit()">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+<script>
+  let members = [];
+  let dragSrc = null;
+
+  // ── Load ──────────────────────────────────────────────
+  fetch("members.json")
+    .then(r => r.json())
+    .then(data => { members = data; renderList(); })
+    .catch(() => { members = []; renderList(); showToast("Could not load members.json", "error"); });
+
+  // ── Render ────────────────────────────────────────────
+  function renderList() {
+    const list = document.getElementById("memberList");
+    document.getElementById("memberCount").textContent = members.length;
+
+    if (members.length === 0) {
+      list.innerHTML = `<div class="empty-state"><i class="fa fa-users"></i>No members yet. Add one using the form.</div>`;
+      return;
+    }
+
+    list.innerHTML = members.map((m, i) => `
+      <div class="member-row" draggable="true" data-index="${i}"
+           ondragstart="onDragStart(event,${i})"
+           ondragover="onDragOver(event)"
+           ondrop="onDrop(event,${i})"
+           ondragleave="onDragLeave(event)"
+           ondragend="onDragEnd(event)">
+        <span class="drag-handle" title="Drag to reorder"><i class="fa fa-grip-vertical"></i></span>
+        <img src="${m.photo}" alt="${m.name}" onerror="this.src='images/dummy.jpg'">
+        <div class="member-info">
+          <div class="m-name">${m.name}</div>
+          <div class="m-role">${m.role}</div>
+        </div>
+        <div class="member-actions">
+          <button class="btn-icon btn-edit" title="Edit" onclick="editMember(${i})"><i class="fa fa-pen"></i></button>
+          <button class="btn-icon btn-delete" title="Delete" onclick="deleteMember(${i})"><i class="fa fa-trash"></i></button>
+        </div>
+      </div>
+    `).join("");
+  }
+
+  // ── Add / Edit ────────────────────────────────────────
+  function saveMember() {
+    const name      = document.getElementById("fName").value.trim();
+    const role      = document.getElementById("fRole").value.trim();
+    const photo     = document.getElementById("fPhoto").value.trim();
+    const linkedin  = document.getElementById("fLinkedin").value.trim();
+    const instagram = document.getElementById("fInstagram").value.trim();
+
+    if (!name || !role) { showToast("Name and Role are required", "error"); return; }
+
+    const member = { name, role, photo: photo || "images/dummy.jpg", linkedin, instagram };
+    const idx = parseInt(document.getElementById("editIndex").value);
+
+    if (idx === -1) {
+      members.push(member);
+      showToast(`${name} added!`, "success");
+    } else {
+      members[idx] = member;
+      showToast(`${name} updated!`, "success");
+    }
+
+    renderList();
+    resetForm();
+  }
+
+  function editMember(i) {
+    const m = members[i];
+    document.getElementById("editIndex").value    = i;
+    document.getElementById("fName").value        = m.name;
+    document.getElementById("fRole").value        = m.role;
+    document.getElementById("fPhoto").value       = m.photo;
+    document.getElementById("fLinkedin").value    = m.linkedin || "";
+    document.getElementById("fInstagram").value   = m.instagram || "";
+    document.getElementById("formTitle").textContent  = "Edit Member";
+    document.getElementById("saveLabel").textContent  = "Save Changes";
+    document.getElementById("cancelBtn").classList.add("visible");
+    previewPhoto(m.photo);
+
+    // highlight editing row
+    document.querySelectorAll(".member-row").forEach(r => r.classList.remove("editing"));
+    document.querySelector(`.member-row[data-index="${i}"]`)?.classList.add("editing");
+    document.querySelector(".form-panel").scrollIntoView({ behavior: "smooth" });
+  }
+
+  function deleteMember(i) {
+    const name = members[i].name;
+    if (!confirm(`Delete ${name}?`)) return;
+    members.splice(i, 1);
+    renderList();
+    resetForm();
+    showToast(`${name} removed`, "success");
+  }
+
+  function cancelEdit() { resetForm(); }
+
+  function resetForm() {
+    document.getElementById("editIndex").value        = -1;
+    document.getElementById("fName").value            = "";
+    document.getElementById("fRole").value            = "";
+    document.getElementById("fPhoto").value           = "";
+    document.getElementById("fLinkedin").value        = "";
+    document.getElementById("fInstagram").value       = "";
+    document.getElementById("formTitle").textContent  = "Add New Member";
+    document.getElementById("saveLabel").textContent  = "Add Member";
+    document.getElementById("cancelBtn").classList.remove("visible");
+    document.getElementById("photoPreview").src       = "";
+    document.querySelectorAll(".member-row").forEach(r => r.classList.remove("editing"));
+  }
+
+  // ── Photo preview ─────────────────────────────────────
+  function previewPhoto(path) {
+    const img = document.getElementById("photoPreview");
+    img.src = path || "";
+    img.onerror = () => img.src = "";
+  }
+
+  // ── Drag to reorder ───────────────────────────────────
+  function onDragStart(e, i) {
+    dragSrc = i;
+    e.currentTarget.classList.add("dragging");
+    e.dataTransfer.effectAllowed = "move";
+  }
+  function onDragOver(e) {
+    e.preventDefault();
+    e.currentTarget.classList.add("drag-over");
+  }
+  function onDragLeave(e) { e.currentTarget.classList.remove("drag-over"); }
+  function onDragEnd(e)   { e.currentTarget.classList.remove("dragging"); }
+  function onDrop(e, i) {
+    e.preventDefault();
+    e.currentTarget.classList.remove("drag-over");
+    if (dragSrc === null || dragSrc === i) return;
+    const moved = members.splice(dragSrc, 1)[0];
+    members.splice(i, 0, moved);
+    dragSrc = null;
+    renderList();
+  }
+
+  // ── Download JSON ─────────────────────────────────────
+  function downloadJSON() {
+    const blob = new Blob([JSON.stringify(members, null, 2)], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "members.json";
+    a.click();
+    showToast("members.json downloaded! Replace the old file and push to GitHub.", "success");
+  }
+
+  // ── Toast ─────────────────────────────────────────────
+  function showToast(msg, type = "success") {
+    const t = document.getElementById("toast");
+    t.textContent = msg;
+    t.className = `toast ${type} show`;
+    setTimeout(() => t.classList.remove("show"), 3000);
+  }
+</script>
+</body>
+</html>

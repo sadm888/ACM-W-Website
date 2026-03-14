@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Supritha Harishankar",
+    "role": "Chairperson",
+    "photo": "images/members/Supritha.png",
+    "linkedin": "https://www.linkedin.com/in/suprithahs/",
+    "instagram": "https://www.instagram.com/acmw_nitk/"
+  },
+  {
+    "name": "Subham Chakraborty",
+    "role": "Vice-Chair",
+    "photo": "images/members/subham.jpg",
+    "linkedin": "https://www.linkedin.com/in/subham-chakraborty-653226196/",
+    "instagram": "https://www.instagram.com/acmw_nitk/"
+  },
+  {
+    "name": "Vageesha Mishra",
+    "role": "Content Head",
+    "photo": "images/members/Vageesha.png",
+    "linkedin": "https://www.linkedin.com/in/vageesha-mishra-8288a419a",
+    "instagram": "https://www.instagram.com/acmw_nitk/"
+  },
+  {
+    "name": "Meghna Kashyap",
+    "role": "Publicity Coordinator",
+    "photo": "images/members/Meghna.jpg",
+    "linkedin": "https://www.linkedin.com/in/meghna-kashyap-4a6860196/",
+    "instagram": "https://www.instagram.com/acmw_nitk/"
+  },
+  {
+    "name": "Yash Kumar Gupta",
+    "role": "Website Head",
+    "photo": "images/members/yash.jpg",
+    "linkedin": "https://www.linkedin.com/in/yash-kumar-gupta-41a931143",
+    "instagram": "https://www.instagram.com/acmw_nitk/"
+  }
+]
