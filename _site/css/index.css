@@ -170,14 +170,7 @@ img {
 .btn-discover:hover::after {
   transform: translateX(4px);
 }
-.btn-discover,
-.btn-discover:hover,
-.btn-discover:focus,
-.btn-discover:active,
-.btn-discover:visited {
-  text-decoration: none !important;
-  outline: none;
-}
+.btn-discover { text-decoration: none !important; outline: none; }
 
 /* ===== ABOUT ===== */
 .about-section {

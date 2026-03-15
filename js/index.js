@@ -1,6 +1,10 @@
 // Mark body so CSS reveal styles activate (fallback: elements stay visible if JS fails)
 document.body.classList.add('js-ready');
 
+// Set footer year
+const _fy = document.getElementById('footer-year');
+if (_fy) _fy.textContent = new Date().getFullYear();
+
 // ── 1. Scroll Reveal ──────────────────────────────────
 const revealObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {

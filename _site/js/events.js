@@ -49,14 +49,9 @@ function setActiveTab(activeId, inactiveId) {
 }
 
 function showEvents(data, activeId, inactiveId) {
-  document.getElementById("app").innerHTML = `
-    <br>
-    <div class="container">
-      <div class="row">
-        ${data.map(EventTemplate).join("")}
-      </div>
-    </div>
-  `;
+  document.getElementById("app").innerHTML = data.length === 0
+    ? `<br><div class="container"><p style="text-align:center;padding:40px;color:#888;font-size:18px;">No upcoming events at the moment — check back soon!</p></div>`
+    : `<br><div class="container"><div class="row">${data.map(EventTemplate).join("")}</div></div>`;
   setActiveTab(activeId, inactiveId);
 }
 

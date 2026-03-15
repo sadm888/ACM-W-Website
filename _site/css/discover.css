@@ -1,7 +1,5 @@
 html body *{
-  box-sizing: border-box;
   margin: 0px;
-  overflow: hidden;
 }
 body{
   display: block;
@@ -10,7 +8,6 @@ body{
   font-size: 16px;
   background-color: white;
   padding: 0;
-  overflow: hidden;
 }
 nav{
   background-color: white;
@@ -63,7 +60,7 @@ nav{
   width: 350px;
   margin:0%;
   padding:0%;
-  border: 2px solid ;
+  border: 2px solid #02CCFE;
   border-radius: 20px;
 }
 
