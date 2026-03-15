@@ -7,7 +7,6 @@ html {
   }
   
   .header{
-      background-color: #f15a42;
       position: fixed;
       box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.6);
       z-index: 10;
@@ -27,7 +26,19 @@ html {
       color: #ffffff;
       font-family: 'Raleway', sans-serif;
   }
+
+  .typewriter {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 3s steps(25) infinite;
+  }
   
+  @keyframes typing {
+    from { opacity: 0; }
+    to { opacity: 1 }
+  }
+
   .chapter_name{
       text-align: center;
       font-size: 30px;
@@ -36,8 +47,7 @@ html {
   }
   
   .nav-options ul > li a:hover {
-      background-color: #fac92C;
-      color: #f15a42;
+      background-color: #4B006E;
   }
   
   button.hamburger{
@@ -50,7 +60,7 @@ html {
     top: 0;
     left: 0;
     display: block;
-    background:rgba(55, 211, 185, 0.7);
+    background:black;
     z-index:2;
   }
   
@@ -91,6 +101,12 @@ html {
     }
     
   }
+  .sections
+  {
+    background-color: #4B006E;
+    
+
+  }
   
   @media only screen and (max-width: 409px){
       button.hamburger{
@@ -126,30 +142,34 @@ html {
       width:60px;
       padding: 5px;
   }
-  
-  .paragraph heading{
-      font-family: 'Alatsi', sans-serif;
+  .header
+  {
+    color:#02CCFE;
+  }
+  .paragraph  {
+      font-family: 'Raleway', sans-serif;
       /* padding-bottom: 10px; */
-      color: #1b4793;
-      border-bottom: 5px solid #f15a42; 
+      
+      
+      /* border-bottom: 5px solid; */
       text-align: center;
   }
-  
+  b
+  {
+    color:#4B006E;
+  }
   .paragraph parabody{
       font-family: 'Raleway', sans-serif;
       font-size: 17px;
-      color: #1b4793;
+      color: #4B006E;
       text-align: justify;
   }
   
-  .main-header p1{
-      font-family: 'Lato', sans-serif;
+  .main-header .p1{
+      font-family: 'Raleway', sans-serif;
       font-weight: 300;
   }
   
-  .main-header {
-      
-  }
   
   
   /* xs */
@@ -163,11 +183,11 @@ html {
           font-size: 20px;
       }
   
-      .main-header p1{
+      .main-header .p1{
           font-size: 50px;
       }
   
-      .main-header p2{
+      .main-header .p2{
           font-size: 35px;
       }
       .img-fluid{
@@ -188,11 +208,11 @@ html {
       }
   
   
-      .main-header p1{
+      .main-header .p1{
           font-size: 100px;
       }
   
-      .main-header p2{
+      .main-header .p2{
           font-size: 40px;
       }
       .img-fluid{
@@ -213,11 +233,11 @@ html {
       }
   
   
-      .main-header p1{
+      .main-header .p1{
           font-size: 70px;
       }
   
-      .main-header p2{
+      .main-header .p2{
           font-size: 55px;
       }
       .img-fluid{
@@ -238,11 +258,11 @@ html {
           font-size: 15px;
       }
   
-      .main-header p1{
+      .main-header .p1{
           font-size: 70px;
       }
   
-      .main-header p2{
+      .main-header .p2{
           font-size: 60px;
       }
       .img-fluid{
@@ -262,11 +282,11 @@ html {
         font-size: 25px;
     }
 
-    .main-header p1{
+    .main-header .p1{
         font-size: 100px;
     }
 
-    .main-header p2{
+    .main-header .p2{
         font-size: 45px;
     }
     .img-fluid{
@@ -284,11 +304,11 @@ html {
         font-size: 25px;
     }
 
-    .main-header p1{
+    .main-header .p1{
         font-size: 80px;
     }
 
-    .main-header p2{
+    .main-header .p2{
         font-size: 45px;
     }
     .img-fluid{
@@ -301,20 +321,13 @@ html {
   .base{
     height:400px;
     width:300px;
-    background:#d33;
+    /* background:#d33; */
     position:relative;
     margin-top:100px;
     margin: auto;
     border-radius: 10px;
   }
 
-  /* $bg: #d8cbb8;
-  $bg_dark: #d3c79d;
-  $bg_darker: #bead81;
-  $fg: #817a70;
-  $accent: #2178ae;
-  
-  $strength: 25; */
 
 body {
     background-color: white;
@@ -333,7 +346,7 @@ body {
     text-transform: uppercase;
     font-weight: 900;
     font-size: 2vw; 
-    font-family: 'Alatsi', sans-serif;
+    font-family: 'Raleway', sans-serif;
     color: white;
   }
 
@@ -366,28 +379,34 @@ body {
   
   .landing__left {
     flex-basis: 50%;
-    background: #1b4793;
+    background: #02CCFE ;
     box-shadow: 0 50vw 0 50vw rgba(0, 0, 0, 0);
   }
   
   .landing__left:hover {
     flex-basis: 150%;
-    background: saturate(#1b4793, 25);
-    /* box-shadow: 0 50vw 0 50vw rgba(0, 0, 0, 0.7); */
+    background: #1b4793;
     color: rgb(255, 255, 255);
   }
   
   .landing__right {
     flex-basis: 50%;
-    background: #2178ae;
+    background: #02CCFE;
     box-shadow: 0 -50vw 0 50vw rgba(0, 0, 0, 0);
   }
   
   .landing__right:hover {
     flex-basis: 150%;
-    background: saturate(#2178ae, 25);
-    /* box-shadow: 0 -50vw 0 50vw rgba(0, 0, 0, 0.7); */
+    background: #2178ae;
     color: rgb(255, 255, 255);
   }
   
+  .foot {
+    background-color: black;
+  }
+
+  .contact-section {
+    background-color: black;
+    padding: 20px;
+  }
    

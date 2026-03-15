@@ -1,0 +1,44 @@
+/* ============================================================
+   colour.css — design tokens (colours, spacing, shadows…)
+   Link this on every page. To change a colour site-wide,
+   only edit this file.
+   ============================================================ */
+
+:root {
+  /* Colors */
+  --color-primary:      #4AAEE4;   /* cyan accent */
+  --color-primary-dark: #2e97d4;   /* darker cyan, hover states */
+  --color-navy:         #2B2B2B;   /* navbar, dark backgrounds */
+  --color-navy-dark:    #1a1a1a;   /* dropdown menus */
+  --color-text-pale:    #cccccc;   /* nav link default text */
+  --color-text:         #333333;   /* main body text */
+  --color-text-muted:   #555555;   /* secondary text */
+  --color-text-light:   #888888;   /* captions, labels */
+  --color-white:        #ffffff;
+  --color-bg:           #ffffff;
+  --color-bg-light:     #f4f6f9;   /* admin / light sections */
+  --color-border:       #e0e0e0;
+
+  /* Spacing scale */
+  --space-xs:   8px;
+  --space-sm:   16px;
+  --space-md:   24px;
+  --space-lg:   48px;
+  --space-xl:   72px;
+  --space-2xl:  110px;
+
+  /* Border radius */
+  --radius-sm:  4px;
+  --radius-md:  8px;
+  --radius-lg:  14px;
+  --radius-pill:999px;
+
+  /* Shadows */
+  --shadow-sm:  0 2px 10px rgba(0,0,0,0.07);
+  --shadow-md:  0 6px 28px rgba(0,0,0,0.12);
+  --shadow-lg:  0 12px 40px rgba(0,0,0,0.18);
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+}

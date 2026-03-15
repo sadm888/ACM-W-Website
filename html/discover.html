@@ -1,77 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>ACM-W NITK — Discover Opportunities</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<title>ACM-W NITK — Discover Opportunities</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Discover scholarships, competitions and conferences curated by ACM-W NITK.">
 
-    <!-- CDN Imports for Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@600&family=Montserrat&family=Quicksand&family=Spirax&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="../css/font.css">
+	<link rel="stylesheet" href="../css/colour.css">
+	<link rel="stylesheet" href="../css/nav.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<link rel="stylesheet" href="../css/discover.css">
 
-    <!-- CDN Imports for CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../css/discover.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="../images/icons/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../images/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="../images/icons/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../images/icons/favicon-16x16.png">
+	<link rel="manifest" href="../images/icons/manifest.json">
+	<meta name="theme-color" content="#ffffff">
 
-    <!-- Browser Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="../images/icons/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../images/icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../images/icons/favicon-16x16.png">
-    <link rel="manifest" href="../images/icons/manifest.json">
-    <meta name="theme-color" content="#ffffff">
-
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156009380-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'UA-156009380-1');
-    </script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-156009380-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+		gtag('config', 'UA-156009380-1');
+	</script>
 </head>
 
-<body>
-    <div id="test"></div>
-    <nav></nav>
+<body class="subpage-body">
 
-    <div id="discoveringopp">
-        <h1 id="title">Discover Opportunities</h1>
-        <div class="search">
-            <div id="searchtitle">
-                <h3>#beInformed</h3>
-            </div>
-            <div class="searchbox">
-                <input type="search" name="q" id="searchbar" onkeyup="searching()" placeholder="Search">
-                <button type="button" class="searchbutton" aria-label="Search"><i class="fas fa-search"></i></button>
-            </div>
-        </div>
-    </div>
+	<nav class="site-navbar" id="navbar">
+		<div class="navbar-inner">
+			<a href="../index.html" class="navbar-logo">
+				<img src="../images/acmw_logo.png" alt="ACM-W logo">
+			</a>
+			<button type="button" class="nav-toggle" id="navToggle">&#9776;</button>
+			<ul class="nav-menu" id="navMenu">
+				<li><a href="../index.html" class="nav-link">Home</a></li>
+				<li><a href="../index.html#about" class="nav-link">About</a></li>
+				<li class="nav-dropdown">
+					<a href="../index.html#activities" class="nav-link">Get Involved <i class="fa fa-caret-down"></i></a>
+					<div class="nav-dropdown-menu">
+						<a href="events.html">Our Events</a>
+						<a href="mentorship.html">Mentorship Programme</a>
+						<a href="discover.html">Discover Opportunities</a>
+					</div>
+				</li>
+				<li><a href="https://acm-w-nitk.github.io/posts/" class="nav-link">Blog</a></li>
+				<li><a href="../index.html#team" class="nav-link">Team</a></li>
+				<li><a href="../index.html#faq" class="nav-link">FAQs</a></li>
+				<li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+			</ul>
+		</div>
+	</nav>
 
-    <div id="mainbody">
-        <div id="itemperpage">
-            <label for="dropdown_menu">Items per page: </label>
-            <select name="itemno" id="dropdown_menu" title="Items per page">
-                <option class="iopt" value="10">10</option>
-                <option class="iopt" value="25">25</option>
-                <option class="iopt" value="50">50</option>
-                <option class="iopt" value="100">100</option>
-            </select>
-        </div>
+	<div id="discoveringopp">
+		<h1 id="title">Discover Opportunities</h1>
+		<div class="search">
+			<div id="searchtitle">
+				<h3>#beInformed</h3>
+			</div>
+			<div class="searchbox">
+				<input type="search" name="q" id="searchbar" onkeyup="searching()" placeholder="Search">
+				<button type="button" class="searchbutton" aria-label="Search"><i class="fas fa-search"></i></button>
+			</div>
+		</div>
+	</div>
 
-        <div id="contents"></div>
+	<div id="mainbody">
+		<div id="itemperpage">
+			<label for="dropdown_menu">Items per page: </label>
+			<select name="itemno" id="dropdown_menu" title="Items per page">
+				<option class="iopt" value="10">10</option>
+				<option class="iopt" value="25">25</option>
+				<option class="iopt" value="50">50</option>
+				<option class="iopt" value="100">100</option>
+			</select>
+		</div>
 
-        <div class="itemandprevnext">
-            <div id="itemsshowing"></div>
-            <div id="prevnext">
-                <button type="button" id="prevbtn" hidden>Previous</button>
-                <button type="button" id="nextbtn">Next</button>
-            </div>
-        </div>
-    </div>
+		<div id="contents"></div>
 
-    <div class="space"></div>
-    <div id="footer">@ACM-W NITK — All rights reserved</div>
+		<div class="itemandprevnext">
+			<div id="itemsshowing"></div>
+			<div id="prevnext">
+				<button type="button" id="prevbtn" hidden>Previous</button>
+				<button type="button" id="nextbtn">Next</button>
+			</div>
+		</div>
+	</div>
 
-    <script src="../js/discover.js"></script>
+	<div class="space"></div>
+	<div id="footer">&copy; ACM-W NITK — All rights reserved</div>
+
+	<script src="../js/header.js"></script>
+	<script src="../js/discover.js"></script>
 </body>
 </html>

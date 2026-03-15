@@ -26,7 +26,8 @@
         "url": "https://github.com/BlackrockDigital/startbootstrap-clean-blog-jekyll.git"
     },
     "scripts": {
-        "start": "browser-sync start --server --files \"css/*.css, js/*.js, *.html, html/*.html\" --startPath index.html"
+        "start": "browser-sync start --server --files \"css/*.css, js/*.js, *.html, html/*.html\" --startPath index.html",
+        "sync": "cp -r css _site/ && cp -r js _site/ && cp -r html _site/ && cp index.html _site/index.html && cp members.json _site/members.json && echo Done syncing to _site/"
     },
     "dependencies": {
         "bootstrap": "4.3.1",

@@ -50,15 +50,17 @@ html {
     top: 0;
     left: 0;
     display: block;
-    background:rgb(250,201,44,0.8);
+    background: rgba(250,201,44,0.8);
     z-index:2;
   }
   
   #text{
     font-size: 50px;
-    color:white; 
+    color: white;
     z-index: 100;
-    padding-bottom: 50px;  
+    padding-bottom: 50px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.35);
+    letter-spacing: 2px;
   }
   @media only screen and (max-width: 576px){
       .nav-options li{
@@ -113,13 +115,13 @@ html {
   
   .about{
       align-items: center;
-      font-family: 'Alatsi', sans-serif;
+      font-family: 'Raleway', sans-serif;
       font-weight: 100;
       background-color: #ffffff;
   }
   
   .about heading {
-      font-family: 'Alatsi', sans-serif;
+      font-family: 'Raleway', sans-serif;
       padding-bottom: 10px;
       color: #1b4793;
       border-bottom: 5px solid #f15a42; 
@@ -143,7 +145,7 @@ html {
   
   .officers{
       padding: 30px;
-      font-family: 'Lato', sans-serif;
+      font-family: 'Raleway', sans-serif;
       font-weight: 100;
       text-align: center;
       background-image: linear-gradient(#ab8fde, #8860D0,#8860D0);
@@ -172,10 +174,16 @@ html {
   .card{
       border-color: transparent;
       background-color: transparent;
+      border-radius: 10px !important;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
   
   .card-body{
       font-family: 'Raleway', sans-serif;
+	  font-size: 17px;
+	  color: #1b4793;
+	  text-align: justify;
   }
   
   .card-body name{
@@ -229,7 +237,7 @@ html {
   
   .carousel-item{
       padding: 20px;
-      font-family: 'Lato', sans-serif;
+      font-family: 'Raleway', sans-serif;
       font-weight: 200;
       text-align: justify;
   }
@@ -249,40 +257,13 @@ html {
     margin-right: -6%;
   }
   
-  .fa-facebook {
-      border-color: #1b4793;
-      border: 1px solid;
+  .fa-facebook, .fa-linkedin, .fa-instagram {
+      border: 1px solid #1b4793;
       color: #1b4793;
       margin: 10px;
   }
-  
-  .fa-linkedin {
-      border-color: #1b4793;
-      border: 1px solid;
-      color: #1b4793;
-      margin: 10px;
-  }
-  
-  .fa-instagram {
-      border-color: #1b4793;
-      border: 1px solid;
-      color: #1b4793;
-      margin: 10px;
-  }
-  
-  .fa-instagram:hover {
-      background: #ffffff;
-      opacity: 1.0;
-      border: none;
-  }
-  
-  .fa-facebook:hover {
-      background: #ffffff;
-      opacity: 1.0;
-      border: none;
-  }
-  
-  .fa-linkedin:hover {
+
+  .fa-facebook:hover, .fa-linkedin:hover, .fa-instagram:hover {
       background: #ffffff;
       opacity: 1.0;
       border: none;
@@ -322,7 +303,7 @@ html {
   }
   
   .paragraph heading{
-      font-family: 'Alatsi', sans-serif;
+      font-family: 'Raleway', sans-serif;
       padding-bottom: 10px;
       color: #1b4793;
       border-bottom: 5px solid #f15a42; 
@@ -336,8 +317,8 @@ html {
       text-align: justify;
   }
   
-  .main-header p1{
-      font-family: 'Lato', sans-serif;
+  .main-header .p1{
+      font-family: 'Raleway', sans-serif;
       font-weight: 300;
   }
   
@@ -357,11 +338,11 @@ html {
           font-size: 20px;
       }
   
-      .main-header p1{
+      .main-header .p1{
           font-size: 50px;
       }
   
-      .main-header p2{
+      .main-header .p2{
           font-size: 35px;
       }
       .img-fluid{
@@ -382,11 +363,11 @@ html {
       }
   
   
-      .main-header p1{
+      .main-header .p1{
           font-size: 100px;
       }
   
-      .main-header p2{
+      .main-header .p2{
           font-size: 40px;
       }
       .img-fluid{
@@ -407,11 +388,11 @@ html {
       }
   
   
-      .main-header p1{
+      .main-header .p1{
           font-size: 70px;
       }
   
-      .main-header p2{
+      .main-header .p2{
           font-size: 55px;
       }
       .img-fluid{
@@ -432,11 +413,11 @@ html {
           font-size: 15px;
       }
   
-      .main-header p1{
+      .main-header .p1{
           font-size: 70px;
       }
   
-      .main-header p2{
+      .main-header .p2{
           font-size: 60px;
       }
       .img-fluid{
@@ -456,11 +437,11 @@ html {
         font-size: 25px;
     }
 
-    .main-header p1{
+    .main-header .p1{
         font-size: 100px;
     }
 
-    .main-header p2{
+    .main-header .p2{
         font-size: 45px;
     }
     .img-fluid{
@@ -478,11 +459,11 @@ html {
         font-size: 25px;
     }
 
-    .main-header p1{
+    .main-header .p1{
         font-size: 80px;
     }
 
-    .main-header p2{
+    .main-header .p2{
         font-size: 45px;
     }
     .img-fluid{
@@ -549,25 +530,35 @@ html {
 
   .button {
     background: white;
-	border: none;
-	color: #1b4793;
-	padding: 15px 32px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
+    border: none;
+    border-bottom: 5px solid #ffffff;
+    color: #1b4793;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
     font-size: 30px;
-    font-family: 'Alatsi', sans-serif;
-	cursor: pointer;
-	width:48%;
+    font-family: 'Raleway', sans-serif;
+    cursor: pointer;
+    width: 48%;
+    transition: border-bottom 0.2s ease;
   }
 
-  .button:hover{
+  .button:hover {
     border-bottom: 5px solid #f15a42;
   }
 
 
-  .card:hover{
-		background: lightcyan;
-      }
+  .card:hover {
+      background: lightcyan;
+      transform: translateY(-6px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.15) !important;
+  }
+
+  .card .img-fluid {
+      height: 200px;
+      object-fit: cover;
+      width: 100%;
+  }
   
   

@@ -16,7 +16,7 @@ nav{
   background-color: white;
 }
 #discoveringopp{
-  font-family: 'Spirax', cursive;
+  font-family: 'Raleway', sans-serif;
   padding: 5%;
   height: 50%;
   -webkit-background: linear-gradient(0deg, rgba(2,0,36,0.99) 44%, rgba(75,0,110,1) 65%, rgba(0,147,184,1) 98%);
@@ -27,7 +27,7 @@ nav{
   width: 100%;
 }
 #title{
-  font-family: 'El Messiri', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 5rem;
   color: white;
   margin-bottom: 30px;
@@ -44,7 +44,7 @@ nav{
 }
 
 #searchtitle{
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Raleway', sans-serif;
   height: 50%;
   width: 100%;
   margin: 0%;
@@ -52,7 +52,7 @@ nav{
 }
 
 #searchtitle h3{
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Raleway', sans-serif;
   display: flex;
   font-size: 1.5rem;
   color: #02CCFE;
@@ -68,12 +68,12 @@ nav{
 }
 
 #searchbar::placeholder{
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Raleway', sans-serif;
   color: #02CCFE;
 }
 
 #searchbar:focus{
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Raleway', sans-serif;
   outline: none;
 }
 
@@ -99,19 +99,19 @@ nav{
 }
 
 #itemperpage{
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Raleway', sans-serif;
   padding-left : 5%;
   background-color: rgba(2,0,36,0.99);
   color:black;
 }
 
 #itemperpage label{
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Raleway', sans-serif;
   background-color: transparent;
   color:white;
 }
 
-#itemperpage #dropdown-menu{
+#itemperpage #dropdown_menu{
   background-color: #02CCFE;
   color:black;
 }
@@ -145,25 +145,25 @@ nav{
 
 .visible > h4{
   text-align: center;
-  font-family: 'El Messiri', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 2rem;
   margin:0%;
 }
 .visible > p{
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 1rem;
   margin:0%;
 }
 
 .visible > h6{
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 1rem;
   margin: 2% ;
 }
 
 .visible > h5{
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Raleway', sans-serif;
   margin:0%;
   font-size: 1.2rem;
 }
@@ -200,7 +200,7 @@ nav{
 }
 
 .popupHeader h4{
-  font-family: 'El Messiri', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 2.5rem;
   font-weight: bold;
 }
@@ -221,13 +221,13 @@ nav{
 
 
 .popupBody{
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Raleway', sans-serif;
   padding: 10px 15px;
   font-size: 1rem;
 }
 
 .popupBody span{
-  font-family: 'El Messiri', sans-serif;
+  font-family: 'Raleway', sans-serif;
   color: rgba(255, 255, 255, 0.8);
   font-size: 1.5rem;
   margin-right: 15px;
@@ -265,7 +265,7 @@ z-index: 2;
 }
 
 #itemsshowing{
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Raleway', sans-serif;
   padding-left:1%;
   width: 50%;
   color : rgba(255,255,255, 0.5);
@@ -310,7 +310,7 @@ z-index: 2;
 
 @media(max-width : 575.98px){
   #title{
-      font-family: 'El Messiri', sans-serif;
+      font-family: 'Raleway', sans-serif;
       font-size: 4.2em;
       color: white;
       margin-bottom: 30px;
@@ -339,7 +339,7 @@ z-index: 2;
   }
 
   #prevbtn, #nextbtn{
-      font-family: 'Quicksand', sans-serif;
+      font-family: 'Raleway', sans-serif;
       margin-right: 2%;
       height: 40px;
       width: 90px;

@@ -1,0 +1,15 @@
+/* ============================================================
+   font.css — single place to change the site font
+   Link this on every page before any other stylesheet.
+   To swap fonts site-wide, only edit this file.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --font-base: 'Raleway', sans-serif;
+}
+
+body {
+  font-family: var(--font-base);
+}

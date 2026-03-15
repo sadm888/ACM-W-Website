@@ -1,16 +1,16 @@
 const faq = [
   {
-    id: 1,
+    icon: "fa-users",
     question: "Who Are We",
-    answer: "ACM-W NITK is a student group that solely focuses on conducting events are programmes for women in NITK and beyond."
+    answer: "ACM-W NITK is a student group that solely focuses on conducting events and programmes for women in NITK and beyond."
   },
   {
-    id: 2,
+    icon: "fa-door-open",
     question: "How Do I Get Involved",
     answer: "ACM-W events are open to all women of NITK, irrespective of clubs, branches, years etc. However, membership in ACM-W is currently restricted only to members of ACM-NITK."
   },
   {
-    id: 3,
+    icon: "fa-star",
     question: "What Are The Benefits Of Being In ACM-W",
     answer: "ACM-W promotes a wide range of activities that are often meant to increase exposure to more information by holding sessions with industry professionals, inter-college events, senior-junior interactions and much more. Being a member of ACM-W also allows you to organise such events, polish your leadership skills and build your network. Other benefits include - sponsored travel to GHCI, GHC scholarships, ACM digital library access and much more."
   }
@@ -19,7 +19,9 @@ const faq = [
 function FaqItem(item) {
   return `
     <div class="faq-item">
-      <button type="button" class="accordion">${item.question}</button>
+      <button type="button" class="accordion">
+        <i class="fa ${item.icon} faq-icon"></i>${item.question}
+      </button>
       <div class="accordion-content">
         <p>${item.answer}</p>
       </div>

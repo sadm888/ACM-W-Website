@@ -4,9 +4,15 @@
 	<meta charset="utf-8">
 	<title>ACM-W NITK</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="ACM-W NITK — empowering women in computing through events, mentorship, and community at NIT Karnataka.">
+	<meta property="og:title" content="ACM-W NITK">
+	<meta property="og:description" content="Empowering women in computing through events, mentorship, and community at NIT Karnataka.">
+	<meta property="og:image" content="images/hero_section.jpg">
+	<meta property="og:type" content="website">
 
 	<!-- CDN Imports for Fonts -->
-	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Raleway:wght@300;400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/font.css">
+	<link rel="stylesheet" href="css/colour.css">
 
 	<!-- CDN Imports for CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -58,9 +64,8 @@
 					</div>
 				</li>
 				<li><a href="https://acm-w-nitk.github.io/posts/" class="nav-link">Blog</a></li>
-				<li><a href="#" class="nav-link">Podcast</a></li>
-				<li><a href="#team" class="nav-link">Team</a></li>
-				<li><a href="#faq" class="nav-link">Faqs</a></li>
+<li><a href="#team" class="nav-link">Team</a></li>
+				<li><a href="#faq" class="nav-link">FAQs</a></li>
 				<li><a href="#contact" class="nav-link">Contact</a></li>
 			</ul>
 		</div>
@@ -76,11 +81,12 @@
 
 	<!-- ===== HERO ===== -->
 	<section class="hero-section">
+		<canvas id="hero-canvas"></canvas>
 		<div class="hero-overlay"></div>
 		<div class="hero-content">
 			<div class="hero-text">
 				<h1 class="hero-title">ACM-W NITK</h1>
-				<p class="hero-subtitle">Association For Computing Machinery - Women</p>
+				<p class="hero-subtitle" id="heroSubtitle">Association For Computing Machinery - Women</p>
 				<a href="#activities" class="btn-discover">Discover Events</a>
 			</div>
 		</div>
@@ -89,8 +95,8 @@
 	<!-- ===== ABOUT US ===== -->
 	<section class="about-section" id="about">
 		<div class="container">
-			<span class="section-badge">About Us</span>
-			<p class="about-text">
+			<span class="section-badge reveal">About Us</span>
+			<p class="about-text reveal">
 				ACM-W is an international organization which supports and empowers women in all aspects of the computing field.
 				ACM-W NITK is a thriving student chapter that was incepted in the summer of 2019. We at ACM-W, NITK chapter
 				wish to inspire and nurture young minds to step up and make a mark in the universe of technology. Our aim is to
@@ -101,12 +107,19 @@
 		</div>
 	</section>
 
+	<!-- wave: white → cyan -->
+	<div class="wave-divider wave-down">
+		<svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#4AAEE4"/>
+		</svg>
+	</div>
+
 	<!-- ===== GET INVOLVED ===== -->
 	<section class="get-involved-section" id="activities">
 		<div class="container">
-			<h2 class="section-heading-white">Get Involved</h2>
+			<h2 class="section-heading-white reveal">Get Involved</h2>
 			<div class="cards-row">
-				<div class="involve-card">
+				<div class="involve-card reveal">
 					<h3 class="card-title cyan">Discover Opportunities</h3>
 					<p class="card-text">
 						Join ACM-W to make a difference and get your ideas sculpted into reality. From multiple scholarships,
@@ -114,7 +127,7 @@
 						<a href="html/discover.html" class="card-link">Click Here For More</a>
 					</p>
 				</div>
-				<div class="involve-card">
+				<div class="involve-card reveal">
 					<h3 class="card-title dark">Events</h3>
 					<p class="card-text">
 						ACM-W aims at holding events in order to empower women in various fields of technology, whether it's in a
@@ -123,7 +136,7 @@
 						<a href="html/events.html" class="card-link">Click Here For More</a>
 					</p>
 				</div>
-				<div class="involve-card">
+				<div class="involve-card reveal">
 					<h3 class="card-title cyan">Mentorship Programme</h3>
 					<p class="card-text">
 						A program to encourage senior-junior interaction, helping with academics, career planning, research
@@ -135,10 +148,17 @@
 		</div>
 	</section>
 
+	<!-- wave: cyan → white -->
+	<div class="wave-divider wave-up">
+		<svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M0,40 C240,0 480,80 720,40 C960,0 1200,80 1440,40 L1440,0 L0,0 Z" fill="#4AAEE4"/>
+		</svg>
+	</div>
+
 	<!-- ===== TEAM ===== -->
 	<section class="team-section" id="team">
 		<div class="container">
-			<h2 class="section-heading-cyan">Meet Our Club Officers</h2>
+			<h2 class="section-heading-cyan reveal">Meet Our Club Officers</h2>
 			<div id="app" class="team-grid"></div>
 		</div>
 	</section>
@@ -153,11 +173,37 @@
 					<div id="app1" class="faq-list"></div>
 				</div>
 				<div class="fb-col">
-					<h2 class="faq-heading">Facebook</h2>
-					<iframe
-						src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Facmwnitk%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
-						width="340" height="500" title="ACM-W NITK Facebook Page"
-						class="fb-iframe" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+					<h2 class="faq-heading">Find Us Online</h2>
+					<div class="social-cards">
+						<a href="https://www.instagram.com/acmw_nitk/" target="_blank" rel="noopener" class="social-card social-card--instagram">
+							<i class="fa-brands fa-instagram"></i>
+							<div class="social-card-text">
+								<span class="social-card-platform">Instagram</span>
+								<span class="social-card-handle">@acmw_nitk</span>
+							</div>
+						</a>
+						<a href="https://www.facebook.com/acmwnitk/" target="_blank" rel="noopener" class="social-card social-card--facebook">
+							<i class="fa-brands fa-facebook-f"></i>
+							<div class="social-card-text">
+								<span class="social-card-platform">Facebook</span>
+								<span class="social-card-handle">ACM-W NITK</span>
+							</div>
+						</a>
+						<a href="https://twitter.com/" target="_blank" rel="noopener" class="social-card social-card--twitter">
+							<i class="fa-brands fa-twitter"></i>
+							<div class="social-card-text">
+								<span class="social-card-platform">Twitter / X</span>
+								<span class="social-card-handle">@acmwnitk</span>
+							</div>
+						</a>
+						<a href="https://acm-w-nitk.github.io/posts/" target="_blank" rel="noopener" class="social-card social-card--blog">
+							<i class="fa-solid fa-rss"></i>
+							<div class="social-card-text">
+								<span class="social-card-platform">Blog</span>
+								<span class="social-card-handle">Read our posts</span>
+							</div>
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -193,7 +239,7 @@
 			</div>
 		</div>
 		<div class="footer-bottom">
-			<span class="footer-copy">&copy; Copyright 2026, All Rights Reserved By ACM-W</span>
+			<span class="footer-copy">&copy; <script>document.write(new Date().getFullYear())</script> ACM-W NITK. All Rights Reserved.</span>
 			<div class="footer-socials">
 				<a href="https://www.facebook.com/acmwnitk/" class="footer-social-icon" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
 				<a href="https://twitter.com/" class="footer-social-icon" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
@@ -203,6 +249,7 @@
 	</footer>
 
 	<!-- Local Imports for JS -->
+	<script type="text/javascript" src="js/tilt.js"></script>
 	<script type="text/javascript" src="js/header.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
 
