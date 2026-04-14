@@ -20,6 +20,7 @@
 
 	<!-- Local Imports for CSS -->
 	<link rel="stylesheet" href="css/nav.css">
+	<link rel="stylesheet" href="css/footer.css">
 	<link rel="stylesheet" href="css/index.css">
 
 	<!-- CDN Imports for JS -->
@@ -47,38 +48,7 @@
 <body>
 
 	<!-- ===== NAVBAR ===== -->
-	<nav class="site-navbar" id="navbar">
-		<div class="navbar-inner">
-			<a href="#" class="navbar-logo">
-				<img src="images/acmw_logo.png" alt="ACM-W logo">
-			</a>
-			<button type="button" class="nav-toggle" id="navToggle">&#9776;</button>
-			<ul class="nav-menu" id="navMenu">
-				<li><a href="#" class="nav-link active">Home</a></li>
-				<li><a href="#about" class="nav-link">About</a></li>
-				<li class="nav-dropdown">
-					<a href="#activities" class="nav-link">Get Involved <i class="fa fa-caret-down"></i></a>
-					<div class="nav-dropdown-menu">
-						<a href="html/events.html">Our Events</a>
-						<a href="html/mentorship.html">Mentorship Programme</a>
-						<a href="html/discover.html">Discover Opportunities</a>
-					</div>
-				</li>
-				<li><a href="https://acm-w-nitk.github.io/posts/" class="nav-link">Blog</a></li>
-<li><a href="#team" class="nav-link">Team</a></li>
-				<li><a href="#faq" class="nav-link">FAQs</a></li>
-				<li><a href="#contact" class="nav-link">Contact</a></li>
-			</ul>
-		</div>
-	</nav>
-
-	<script>
-		if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
-			const adminLi = document.createElement("li");
-			adminLi.innerHTML = '<a href="admin.html" class="nav-link" style="color:#4AAEE4;"><i class="fa fa-gear"></i> Admin</a>';
-			document.getElementById("navMenu").appendChild(adminLi);
-		}
-	</script>
+	<div id="siteNavMount" data-page="home"></div>
 
 	<!-- ===== HERO ===== -->
 	<section class="hero-section">
@@ -197,7 +167,7 @@
 								<span class="social-card-handle">@acmwnitk</span>
 							</div>
 						</a>
-						<a href="https://acm-w-nitk.github.io/posts/" target="_blank" rel="noopener" class="social-card social-card--blog">
+						<a href="/blog.html" class="social-card social-card--blog">
 							<i class="fa-solid fa-rss"></i>
 							<div class="social-card-text">
 								<span class="social-card-platform">Blog</span>

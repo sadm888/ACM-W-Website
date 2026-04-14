@@ -1,150 +1,124 @@
 /* ===== MENTORSHIP PAGE ===== */
 
-body {
-  background-color: white;
-  font-size: 10px;
+/* ----- Scroll Reveal ----- */
+.js-ready .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.js-ready .reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-img {
+/* ----- Hero ----- */
+.mentorship-hero {
+  position: relative;
+  min-height: 380px;
+  background: url('../images/gs_event.jpg') center center / cover no-repeat;
+  image-rendering: -webkit-optimize-contrast;
+  background-attachment: scroll;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.mentorship-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(20,25,35,0.65) 40%, rgba(74,174,228,0.18) 100%);
+  z-index: 1;
+}
+
+.mentorship-hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 120px 24px 80px;
+}
+
+.mentorship-hero-title {
+  font-family: var(--font-base);
+  font-size: clamp(2.8rem, 8vw, 5.5rem);
+  font-weight: 700;
+  color: var(--color-white);
+  letter-spacing: 3px;
+  margin: 0 0 10px;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.mentorship-hero-title span {
+  color: var(--color-primary);
+}
+
+.mentorship-hero-sub {
+  font-family: var(--font-base);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 400;
+  color: rgba(255,255,255,0.8);
+  letter-spacing: 1.5px;
+  margin: 0;
+}
+
+/* ----- Scroll Stack ----- */
+.scroll-stack-wrap {
   width: 100%;
+  background: var(--color-bg, #f7f9fc);
 }
 
-.main-header {
-  font-family: var(--font-base);
-  text-align: center;
-  background-image: url("../images/gs_event.JPG");
-  background-size: 1200px;
-  color: #ffffff;
-}
-
-.main-header .p1 {
-  font-family: var(--font-base);
-  font-weight: 300;
-}
-
-.header-text {
-  margin-top: 100px;
-}
-
-.paragraph {
-  font-family: var(--font-base);
-  text-align: center;
-}
-
-b {
-  color: #4B006E;
-}
-
-.paragraph parabody {
-  font-family: var(--font-base);
-  font-size: 17px;
-  color: #4B006E;
-  text-align: justify;
-}
-
-.contact-section {
-  background-color: black;
-  padding: 20px;
-}
-
-.contact-center {
-  text-align: center;
-}
-
-.contact-email-wrap {
-  width: 300px;
+.scroll-stack-inner {
+  padding: 80px 24px 300px;
+  max-width: 860px;
   margin: 0 auto;
 }
 
-.email-button {
-  background-color: #1b4793;
-  color: white;
-  padding: 17px 20px;
-  font-family: var(--font-base);
+.scroll-stack-card {
+  background: var(--color-white, #fff);
+  border-radius: 24px;
+  padding: 52px 56px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.10);
+  border-top: 4px solid var(--color-primary, #4AAEE4);
+  transform-origin: top center;
+  will-change: transform;
+}
+
+.section-badge {
+  display: inline-block;
+  background: var(--color-primary);
+  color: var(--color-white);
   font-size: 15px;
-  text-align: center;
-  font-style: bold;
-  width: 180px;
-  text-decoration: none;
+  font-weight: 700;
+  padding: 8px 24px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 28px;
 }
 
-.email-button:hover {
-  border: 0px;
-  background-color: #ffffff;
+.scroll-stack-card p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--color-text-muted);
+  margin: 0;
 }
 
-.fa {
-  padding: 15px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+.scroll-stack-end {
+  width: 100%;
+  height: 1px;
 }
 
-a.fa {
-  text-decoration: none;
+/* ----- Responsive ----- */
+@media (max-width: 768px) {
+  .mentorship-hero { min-height: 300px; }
+  .mentorship-hero-content { padding: 90px 20px 64px; }
+  .scroll-stack-inner { padding: 48px 16px 200px; }
+  .scroll-stack-card { padding: 36px 28px; border-radius: 16px; }
+  .section-badge { font-size: 14px; padding: 7px 20px; }
 }
 
-.fa:hover {
-  opacity: 0.5;
-}
-
-.fa-facebook, .fa-linkedin, .fa-instagram {
-  border: 1px solid #1b4793;
-  color: #1b4793;
-  margin: 10px;
-}
-
-.fa-facebook:hover, .fa-linkedin:hover, .fa-instagram:hover {
-  background: #ffffff;
-  opacity: 1.0;
-  border: none;
-}
-
-/* ===== RESPONSIVE ===== */
-@media (min-width: 0px) {
-  .paragraph heading { font-size: 30px; }
-  .paragraph parabody { font-size: 20px; }
-  .main-header .p1 { font-size: 50px; }
-  .main-header .p2 { font-size: 35px; }
-  .img-fluid { height: 70vw; width: 80%; }
-}
-
-@media (min-width: 576px) {
-  .paragraph heading { font-size: 30px; }
-  .paragraph parabody { font-size: 20px; }
-  .main-header .p1 { font-size: 100px; }
-  .main-header .p2 { font-size: 40px; }
-  .img-fluid { height: 42vw; width: 60%; }
-}
-
-@media (min-width: 768px) {
-  .paragraph heading { font-size: 35px; }
-  .paragraph parabody { font-size: 25px; }
-  .main-header .p1 { font-size: 70px; }
-  .main-header .p2 { font-size: 55px; }
-  .img-fluid { height: 20vw; width: 100%; }
-}
-
-@media (min-width: 992px) {
-  .paragraph heading { font-size: 35px; }
-  .paragraph parabody { font-size: 15px; }
-  .main-header .p1 { font-size: 70px; }
-  .main-header .p2 { font-size: 60px; }
-  .img-fluid { height: 24vw; width: 100%; }
-}
-
-@media (min-width: 1200px) {
-  .paragraph heading { font-size: 35px; }
-  .paragraph parabody { font-size: 25px; }
-  .main-header .p1 { font-size: 100px; }
-  .main-header .p2 { font-size: 45px; }
-  .img-fluid { height: 18vw; width: 80%; }
-}
-
-@media (min-width: 1250px) {
-  .paragraph heading { font-size: 35px; }
-  .paragraph parabody { font-size: 25px; }
-  .main-header .p1 { font-size: 80px; }
-  .main-header .p2 { font-size: 45px; }
-  .img-fluid { height: 15vw; width: 80%; }
+@media (max-width: 480px) {
+  .mentorship-hero { min-height: 260px; }
+  .mentorship-hero-content { padding: 76px 16px 52px; }
+  .scroll-stack-card { padding: 28px 20px; }
+  .scroll-stack-card p { font-size: 15px; }
 }

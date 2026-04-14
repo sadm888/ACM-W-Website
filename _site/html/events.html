@@ -2,20 +2,16 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>ACM-W NITK — Events</title>
+	<title>ACM-W NITK</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Events organised by ACM-W NITK — empowering women in technology.">
 
 	<link rel="stylesheet" href="../css/font.css">
 	<link rel="stylesheet" href="../css/colour.css">
 	<link rel="stylesheet" href="../css/nav.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/footer.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 	<link rel="stylesheet" href="../css/events.css">
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 	<link rel="icon" type="image/png" sizes="32x32" href="../images/icons/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="96x96" href="../images/icons/favicon-96x96.png">
@@ -32,51 +28,69 @@
 </head>
 <body class="subpage-body">
 
-	<nav class="site-navbar" id="navbar">
-		<div class="navbar-inner">
-			<a href="../index.html" class="navbar-logo">
-				<img src="../images/acmw_logo.png" alt="ACM-W logo">
-			</a>
-			<button type="button" class="nav-toggle" id="navToggle">&#9776;</button>
-			<ul class="nav-menu" id="navMenu">
-				<li><a href="../index.html" class="nav-link">Home</a></li>
-				<li><a href="../index.html#about" class="nav-link">About</a></li>
-				<li class="nav-dropdown">
-					<a href="../index.html#activities" class="nav-link">Get Involved <i class="fa fa-caret-down"></i></a>
-					<div class="nav-dropdown-menu">
-						<a href="events.html">Our Events</a>
-						<a href="mentorship.html">Mentorship Programme</a>
-						<a href="discover.html">Discover Opportunities</a>
-					</div>
-				</li>
-				<li><a href="https://acm-w-nitk.github.io/posts/" class="nav-link">Blog</a></li>
-				<li><a href="../index.html#team" class="nav-link">Team</a></li>
-				<li><a href="../index.html#faq" class="nav-link">FAQs</a></li>
-				<li><a href="../index.html#contact" class="nav-link">Contact</a></li>
-			</ul>
-		</div>
-	</nav>
+	<div id="siteNavMount" data-page="events"></div>
 
-	<div class="main-header">
-		<div class="row">
-			<div class="col-md-12" id="overlay">
-				<div class="container-fluid header-text">
-					<div id="text">
-						<p class="p1">OUR<b> EVENTS</b></p>
-						<p class="p2">#beinvolved</p>
-					</div>
+	<!-- Hero -->
+	<div class="events-hero">
+		<div class="events-hero-overlay"></div>
+		<div class="events-hero-content">
+			<p class="events-hero-title">Our <span>Events</span></p>
+			<p class="events-hero-sub">#beinvolved</p>
+		</div>
+	</div>
+
+	<!-- Tab Switcher -->
+	<div class="events-tabs-wrap">
+		<div class="events-tabs">
+			<button type="button" class="tab-btn" id="newevents" onclick="newevents()">Upcoming Events</button>
+			<button type="button" class="tab-btn" id="oldevents" onclick="oldevents()">Past Events</button>
+		</div>
+	</div>
+
+	<!-- Events Grid -->
+	<div class="events-grid-section">
+		<div class="events-grid" id="app"></div>
+	</div>
+
+	<!-- Footer -->
+	<footer class="site-footer" id="contact">
+		<div class="footer-inner">
+			<div class="footer-left">
+				<div class="footer-logo">
+					<img src="../images/acmw_logo.png" alt="ACM-W logo">
+				</div>
+				<p class="footer-tagline">
+					At ACM-W we're all ears. Feel free to drop in your feedback or
+					suggestions — we'd love to hear from you. Leave us a mail or
+					connect with us on our social media accounts.
+				</p>
+			</div>
+			<div class="footer-right">
+				<div class="footer-contact-item">
+					<i class="fa fa-location-dot"></i>
+					<span>National Institute Of Technology Karnataka Surathkal. NH 66, Srinivasnagar, Surathkal, Mangalore, Karnataka 575025</span>
+				</div>
+				<div class="footer-contact-item">
+					<i class="fa fa-envelope"></i>
+					<span>acmw.nitk@gmail.com</span>
+				</div>
+				<div class="footer-contact-item">
+					<i class="fa fa-phone"></i>
+					<span>+91 9902921511</span>
 				</div>
 			</div>
 		</div>
-	</div>
+		<div class="footer-bottom">
+			<span class="footer-copy">&copy; <span id="footer-year"></span> ACM-W NITK. All Rights Reserved.</span>
+			<div class="footer-socials">
+				<a href="https://www.facebook.com/acmwnitk/" class="footer-social-icon" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+				<a href="https://twitter.com/" class="footer-social-icon" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+				<a href="https://www.instagram.com/acmw_nitk/" class="footer-social-icon" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+			</div>
+		</div>
+	</footer>
 
-	<br>
-	<div align="center">
-		<button type="button" class="button" onclick="newevents()" id="newevents">Upcoming Events</button>
-		<button type="button" class="button" onclick="oldevents()" id="oldevents">Past Events</button>
-	</div>
-	<div id="app"></div>
-
+	<script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
 	<script src="../js/header.js"></script>
 	<script src="../js/events.js"></script>
 </body>

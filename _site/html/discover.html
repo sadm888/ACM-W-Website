@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>ACM-W NITK — Discover Opportunities</title>
+	<title>ACM-W NITK</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Discover scholarships, competitions and conferences curated by ACM-W NITK.">
 
@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="../css/font.css">
 	<link rel="stylesheet" href="../css/colour.css">
 	<link rel="stylesheet" href="../css/nav.css">
+	<link rel="stylesheet" href="../css/footer.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 	<link rel="stylesheet" href="../css/discover.css">
 
@@ -28,50 +29,32 @@
 		gtag('config', 'UA-156009380-1');
 	</script>
 </head>
-
 <body class="subpage-body">
 
-	<nav class="site-navbar" id="navbar">
-		<div class="navbar-inner">
-			<a href="../index.html" class="navbar-logo">
-				<img src="../images/acmw_logo.png" alt="ACM-W logo">
-			</a>
-			<button type="button" class="nav-toggle" id="navToggle">&#9776;</button>
-			<ul class="nav-menu" id="navMenu">
-				<li><a href="../index.html" class="nav-link">Home</a></li>
-				<li><a href="../index.html#about" class="nav-link">About</a></li>
-				<li class="nav-dropdown">
-					<a href="../index.html#activities" class="nav-link">Get Involved <i class="fa fa-caret-down"></i></a>
-					<div class="nav-dropdown-menu">
-						<a href="events.html">Our Events</a>
-						<a href="mentorship.html">Mentorship Programme</a>
-						<a href="discover.html">Discover Opportunities</a>
-					</div>
-				</li>
-				<li><a href="https://acm-w-nitk.github.io/posts/" class="nav-link">Blog</a></li>
-				<li><a href="../index.html#team" class="nav-link">Team</a></li>
-				<li><a href="../index.html#faq" class="nav-link">FAQs</a></li>
-				<li><a href="../index.html#contact" class="nav-link">Contact</a></li>
-			</ul>
-		</div>
-	</nav>
+	<div id="siteNavMount" data-page="discover"></div>
 
-	<div id="discoveringopp">
-		<h1 id="title">Discover Opportunities</h1>
-		<div class="search">
-			<div id="searchtitle">
-				<h3>#beInformed</h3>
-			</div>
-			<div class="searchbox">
-				<input type="search" name="q" id="searchbar" onkeyup="searching()" placeholder="Search">
-				<button type="button" class="searchbutton" aria-label="Search"><i class="fas fa-search"></i></button>
+	<!-- Hero -->
+	<div class="discover-hero">
+		<div class="discover-hero-overlay"></div>
+		<div class="discover-hero-content">
+			<p class="discover-hero-title">Discover <span>Opportunities</span></p>
+			<p class="discover-hero-sub">#beInformed</p>
+			<div class="discover-searchbox-wrap">
+				<div class="searchbox">
+					<input type="search" name="q" id="searchbar" onkeyup="searching()" placeholder="Search opportunities…" autocomplete="off">
+					<button type="button" class="searchbutton" aria-label="Search"><i class="fas fa-search"></i></button>
+				</div>
 			</div>
 		</div>
 	</div>
 
-	<div id="mainbody">
-		<div id="itemperpage">
-			<label for="dropdown_menu">Items per page: </label>
+	<!-- Overlay for popups -->
+	<div id="test" aria-hidden="true"></div>
+
+	<!-- Main content -->
+	<div class="discover-main">
+		<div class="discover-controls">
+			<label for="dropdown_menu">Items per page:</label>
 			<select name="itemno" id="dropdown_menu" title="Items per page">
 				<option class="iopt" value="10">10</option>
 				<option class="iopt" value="25">25</option>
@@ -86,14 +69,50 @@
 			<div id="itemsshowing"></div>
 			<div id="prevnext">
 				<button type="button" id="prevbtn" hidden>Previous</button>
-				<button type="button" id="nextbtn">Next</button>
+				<button type="button" id="nextbtn" hidden>Next</button>
 			</div>
 		</div>
 	</div>
 
-	<div class="space"></div>
-	<div id="footer">&copy; ACM-W NITK — All rights reserved</div>
+	<!-- Footer -->
+	<footer class="site-footer" id="contact">
+		<div class="footer-inner">
+			<div class="footer-left">
+				<div class="footer-logo">
+					<img src="../images/acmw_logo.png" alt="ACM-W logo">
+				</div>
+				<p class="footer-tagline">
+					At ACM-W we're all ears. Feel free to drop in your feedback or
+					suggestions — we'd love to hear from you. Leave us a mail or
+					connect with us on our social media accounts.
+				</p>
+			</div>
+			<div class="footer-right">
+				<div class="footer-contact-item">
+					<i class="fa fa-location-dot"></i>
+					<span>National Institute Of Technology Karnataka Surathkal. NH 66, Srinivasnagar, Surathkal, Mangalore, Karnataka 575025</span>
+				</div>
+				<div class="footer-contact-item">
+					<i class="fa fa-envelope"></i>
+					<span>acmw.nitk@gmail.com</span>
+				</div>
+				<div class="footer-contact-item">
+					<i class="fa fa-phone"></i>
+					<span>+91 9902921511</span>
+				</div>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<span class="footer-copy">&copy; <span id="footer-year"></span> ACM-W NITK. All Rights Reserved.</span>
+			<div class="footer-socials">
+				<a href="https://www.facebook.com/acmwnitk/" class="footer-social-icon" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+				<a href="https://twitter.com/" class="footer-social-icon" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+				<a href="https://www.instagram.com/acmw_nitk/" class="footer-social-icon" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+			</div>
+		</div>
+	</footer>
 
+	<script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
 	<script src="../js/header.js"></script>
 	<script src="../js/discover.js"></script>
 </body>

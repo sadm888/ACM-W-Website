@@ -208,20 +208,38 @@ const teamHeading = document.querySelector('.section-heading-cyan');
 if (teamHeading) initShuffle(teamHeading, 0.035);
 
 // ── 6. Active nav highlight on scroll ─────────────────
-const navSections = document.querySelectorAll('section[id], footer[id]');
-const navLinks = document.querySelectorAll('.nav-link');
+let navObserverInitialized = false;
 
-const navObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      navLinks.forEach(l => l.classList.remove('active'));
-      const match = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
-      if (match) match.classList.add('active');
-    }
-  });
-}, { threshold: 0.4 });
+function initNavObserver() {
+  if (navObserverInitialized) return;
 
-navSections.forEach(s => navObserver.observe(s));
+  const navSections = document.querySelectorAll('section[id], footer[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  if (!navSections.length || !navLinks.length) return;
+
+  const navObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+
+        const candidates = [
+          `.nav-link[href="#${entry.target.id}"]`,
+          `.nav-link[href="/index.html#${entry.target.id}"]`,
+          `.nav-link[href="/#${entry.target.id}"]`
+        ];
+
+        const match = candidates.map(selector => document.querySelector(selector)).find(Boolean);
+        if (match) match.classList.add('active');
+      }
+    });
+  }, { threshold: 0.4 });
+
+  navSections.forEach(s => navObserver.observe(s));
+  navObserverInitialized = true;
+}
+
+initNavObserver();
+document.addEventListener('site-nav-ready', initNavObserver);
 
 // ── 7. Scroll progress bar ────────────────────────────
 const progressBar = document.createElement('div');

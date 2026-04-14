@@ -1,0 +1,496 @@
+/* ===== BLOG PAGE ===== */
+
+/* Force Raleway everywhere — neutralises Bootstrap/main.css resets */
+body,
+h1, h2, h3, h4, h5, h6,
+p, a, span, li, label, input, textarea, select, button {
+  font-family: var(--font-base) !important;
+}
+
+/* ----- Hero (overrides main.css masthead) ----- */
+header.masthead {
+  position: relative;
+  min-height: 460px;
+  background-color: #141923;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: scroll !important;
+  margin-bottom: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Antigravity canvas — fills the hero, sits above the overlay */
+#antigravity-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none;
+  z-index: 2;
+  display: block;
+}
+
+header.masthead .overlay {
+  background: rgba(10, 12, 20, 0.88) !important;
+  opacity: 1 !important;
+  z-index: 1;
+  position: absolute;
+  inset: 0;
+}
+
+/* Post pages have a photo — strategic gradient: dark at bottom where text sits */
+header.masthead[data-hero-bg] .overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(10,12,20,0.35) 0%,
+    rgba(10,12,20,0.55) 50%,
+    rgba(10,12,20,0.80) 100%
+  ) !important;
+}
+
+header.masthead .container {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+}
+
+/* Blog listing hero */
+header.masthead .page-heading,
+header.masthead .site-heading {
+  padding: 80px 0 60px;
+  text-align: center;
+}
+
+header.masthead .page-heading h1,
+header.masthead .site-heading h1 {
+  font-family: var(--font-base) !important;
+  font-size: clamp(2.8rem, 8vw, 5.5rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-white);
+  margin: 0 0 10px;
+}
+
+header.masthead .page-heading .subheading,
+header.masthead .site-heading .subheading {
+  font-family: var(--font-base) !important;
+  font-size: clamp(1rem, 2.5vw, 1.25rem) !important;
+  font-weight: 400 !important;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 1.5px;
+  margin: 0;
+}
+
+/* Post page hero */
+header.masthead .post-heading {
+  padding: 80px 0 60px;
+  text-align: center;
+}
+
+header.masthead .post-heading h1 {
+  font-family: var(--font-base) !important;
+  font-size: clamp(1.6rem, 4.5vw, 3rem) !important;
+  font-weight: 800 !important;
+  color: var(--color-white);
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  margin: 0 0 16px;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.9), 0 0 40px rgba(0,0,0,0.6);
+}
+
+header.masthead .post-heading .subheading {
+  font-family: var(--font-base) !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  color: var(--color-primary);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin: 0 0 20px;
+  display: block;
+}
+
+header.masthead .post-heading .meta {
+  font-family: var(--font-base) !important;
+  font-size: 13px !important;
+  font-style: normal !important;
+  color: rgba(255,255,255,0.70);
+  letter-spacing: 0.3px;
+  display: block;
+}
+
+header.masthead .post-heading .meta a {
+  color: var(--color-primary) !important;
+  text-decoration: none;
+}
+
+/* ----- Post list cards ----- */
+.post-preview {
+  background: var(--color-white);
+  border: 1.5px solid var(--color-border);
+  border-top: 3px solid var(--color-primary);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  margin: 0 0 20px !important;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.post-preview:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.post-preview > a {
+  text-decoration: none !important;
+}
+
+.post-preview > a > .post-title {
+  font-family: var(--font-base) !important;
+  font-size: 1.2rem !important;
+  font-weight: 700 !important;
+  color: var(--color-text) !important;
+  margin: 0 0 8px !important;
+  transition: color var(--transition-fast);
+}
+
+.post-preview > a:hover > .post-title {
+  color: var(--color-primary) !important;
+}
+
+.post-preview > a > .post-subtitle {
+  font-family: var(--font-base) !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  color: var(--color-primary) !important;
+  letter-spacing: 0.5px;
+  margin: 0 0 10px !important;
+}
+
+.post-preview > .post-meta {
+  font-family: var(--font-base) !important;
+  font-size: 13px !important;
+  color: var(--color-text-light) !important;
+  font-style: normal !important;
+  margin: 0 !important;
+}
+
+/* ----- Buttons ----- */
+.btn-primary {
+  background: transparent !important;
+  border: 1.5px solid var(--color-primary) !important;
+  color: var(--color-primary) !important;
+  font-family: var(--font-base) !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  border-radius: var(--radius-pill) !important;
+  padding: 10px 22px !important;
+  transition: background var(--transition-fast), color var(--transition-fast) !important;
+  text-decoration: none !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+  color: var(--color-white) !important;
+  box-shadow: none !important;
+}
+
+/* ----- HR dividers ----- */
+hr {
+  border-color: var(--color-border);
+}
+
+/* ----- Section spacing ----- */
+.container > .row {
+  padding: 48px 0;
+}
+
+/* ----- Article body typography (keep readable) ----- */
+.container article p {
+  color: var(--color-text);
+}
+
+/* ----- Inline image helpers ----- */
+.img-center {
+  display: block;
+  margin: 0 auto;
+  width: 50%;
+  max-width: 100%;
+}
+
+/* ===== BLOG POST ARTICLE ===== */
+
+.post-article {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 60px 24px 48px;
+}
+
+.post-body p {
+  font-family: var(--font-base);
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--color-text);
+  margin: 0 0 22px;
+}
+
+.post-body p a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  transition: color var(--transition-fast);
+}
+
+.post-body p a:hover {
+  color: var(--color-primary-dark);
+}
+
+.post-body h2.section-heading {
+  font-family: var(--font-base);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 40px 0 16px;
+  padding-left: 14px;
+  border-left: 3px solid var(--color-primary);
+}
+
+.post-body img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-md);
+  margin: 28px auto;
+}
+
+.post-body blockquote {
+  border-left: 3px solid var(--color-primary);
+  margin: 28px 0;
+  padding: 12px 20px;
+  background: var(--color-bg-light);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+
+.post-divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 40px 0;
+}
+
+/* Back to blog link (top of post article) */
+.post-back-btn {
+  display: inline-flex;
+  margin-bottom: 28px;
+}
+
+/* Post navigation prev/next */
+.post-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-top: 8px;
+}
+
+.post-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-base);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
+  border-radius: var(--radius-pill);
+  padding: 10px 22px;
+  text-decoration: none;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.post-nav-btn:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+  text-decoration: none;
+}
+
+/* ===== MUSINGS LISTING PAGE ===== */
+
+/* Hero */
+.musings-hero {
+  position: relative;
+  min-height: 380px;
+  background: #0a0c14;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.musings-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 60% 40%, rgba(74,174,228,0.18) 0%, transparent 70%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.musings-hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 120px 24px 80px;
+}
+
+.musings-hero-title {
+  font-family: var(--font-base);
+  font-size: clamp(2.8rem, 8vw, 5.5rem);
+  font-weight: 700;
+  color: var(--color-white);
+  letter-spacing: 3px;
+  margin: 0 0 10px;
+  text-transform: uppercase;
+}
+
+.musings-hero-title span {
+  color: var(--color-primary);
+}
+
+.musings-hero-sub {
+  font-family: var(--font-base);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 400;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 1.5px;
+  margin: 0;
+}
+
+/* Post grid */
+.musings-main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 60px 24px;
+}
+
+.musings-post-card {
+  background: var(--color-white);
+  border: 1.5px solid var(--color-border);
+  border-top: 3px solid var(--color-primary);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.musings-post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.musings-post-card a {
+  text-decoration: none;
+}
+
+.musings-post-title {
+  font-family: var(--font-base);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0 0 8px;
+  transition: color var(--transition-fast);
+}
+
+.musings-post-card:hover .musings-post-title {
+  color: var(--color-primary);
+}
+
+.musings-post-subtitle {
+  font-family: var(--font-base);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  letter-spacing: 0.5px;
+  margin: 0 0 14px;
+}
+
+.musings-post-meta {
+  font-family: var(--font-base);
+  font-size: 13px;
+  color: var(--color-text-light);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.musings-post-meta .meta-dot {
+  color: var(--color-border);
+}
+
+.musings-read-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px;
+  font-family: var(--font-base);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: gap var(--transition-fast), color var(--transition-fast);
+}
+
+.musings-read-link:hover {
+  gap: 10px;
+  color: var(--color-primary-dark);
+}
+
+/* ----- Responsive ----- */
+@media (max-width: 768px) {
+  header.masthead .page-heading,
+  header.masthead .site-heading,
+  header.masthead .post-heading {
+    padding: 60px 0 40px;
+  }
+
+  .container > .row { padding: 32px 0; }
+
+  /* Blog listing */
+  .post-preview { padding: 22px 18px; }
+  .post-preview > a > .post-title { font-size: 1.1rem !important; }
+
+  /* Musings listing */
+  .musings-main { padding: 36px 16px; }
+  .musings-hero-content { padding: 90px 20px 60px; }
+  .musings-post-card { padding: 24px 20px; }
+  .musings-post-title { font-size: 1.1rem; }
+
+  /* Post article */
+  .post-article { padding: 40px 16px 36px; }
+  .post-body p { font-size: 15px; }
+  .post-body h2.section-heading { font-size: 1.2rem; }
+}
+
+@media (max-width: 480px) {
+  .musings-main { padding: 24px 12px; }
+  .musings-hero { min-height: 260px; }
+  .musings-hero-content { padding: 76px 16px 52px; }
+  .musings-post-card { padding: 20px 16px; }
+
+  .post-article { padding: 28px 12px 28px; }
+  .post-body p { font-size: 14px; line-height: 1.75; }
+
+  .post-nav { flex-direction: column; }
+  .post-nav-btn { justify-content: center; }
+
+  /* Blog listing cards */
+  .post-preview { padding: 18px 14px; }
+}

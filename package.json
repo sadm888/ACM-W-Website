@@ -27,7 +27,7 @@
     },
     "scripts": {
         "start": "browser-sync start --server --files \"css/*.css, js/*.js, *.html, html/*.html\" --startPath index.html",
-        "sync": "cp -r css _site/ && cp -r js _site/ && cp -r html _site/ && cp index.html _site/index.html && cp members.json _site/members.json && echo Done syncing to _site/"
+        "sync": "cp -r css _site/ && cp -r js _site/ && cp -r html _site/ && cp -r images _site/ && cp -r partials _site/ && cp index.html _site/index.html && cp blog.html _site/blog.html; cp admin.html _site/admin.html; cp members.json _site/members.json; cp opp.json _site/opp.json && echo Done syncing to _site/"
     },
     "dependencies": {
         "bootstrap": "4.3.1",
