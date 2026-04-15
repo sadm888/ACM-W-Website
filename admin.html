@@ -105,6 +105,9 @@
         &nbsp;·&nbsp; <span id="pastCount">0</span> past &nbsp;·&nbsp; <span id="upcomingCount">0</span> upcoming
       </div>
       <div class="status-bar-right">
+        <button type="button" class="btn-export" onclick="exportEventsJSON()" title="Download events.json to make changes permanent">
+          <i class="fa fa-download"></i> Export JSON
+        </button>
         <button type="button" class="btn-add-member" onclick="resetEventForm(); document.querySelector('#eventsSection .form-panel').scrollIntoView({ behavior: 'smooth' });">
           <i class="fa fa-plus"></i> Add Event
         </button>
@@ -492,6 +495,18 @@
   // ════════════════════════════════════════════════════
   //  SHARED
   // ════════════════════════════════════════════════════
+  function exportEventsJSON() {
+    const data = JSON.stringify(events, null, 2);
+    const blob = new Blob([data], { type: 'application/json' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href     = url;
+    a.download = 'events.json';
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('events.json downloaded — replace the file on disk to make changes permanent.');
+  }
+
   function exportMembersJSON() {
     const data = JSON.stringify(members, null, 2);
     const blob = new Blob([data], { type: 'application/json' });
